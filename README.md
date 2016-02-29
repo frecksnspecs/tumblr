@@ -2,6 +2,7 @@
 Some interactions in Tumblr
 
 Submitted by: Sam Huskins
+
 Time spent: 12 hours spent in total
 
 ## User Stories
