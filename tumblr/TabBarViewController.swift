@@ -11,6 +11,7 @@ import UIKit
 class TabBarViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet var buttons: [UIButton]!
+    @IBOutlet weak var popupView: UIImageView!
     
     var homeViewController: UIViewController!
     var searchViewController: UIViewController!
@@ -19,6 +20,7 @@ class TabBarViewController: UIViewController {
     
     var viewControllers: [UIViewController]!
     var selectedIndex: Int = 0
+    var popupOriginalPos: CGPoint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +35,13 @@ class TabBarViewController: UIViewController {
         
         buttons[selectedIndex].selected = true
         didPressTab(buttons[selectedIndex])
+        self.popupOriginalPos  = self.popupView.center
+        
+        UIView.animateWithDuration(1, delay: 0, options: [.Repeat, .Autoreverse], animations: { () -> Void in
+                self.popupView.center.y = 502
+            }) { (finished) -> Void in
 
-
-
-
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -64,6 +69,13 @@ class TabBarViewController: UIViewController {
         vc.view.frame = contentView.bounds
         contentView.addSubview(vc.view)
         vc.didMoveToParentViewController(self)
+        
+        if sender.tag == 1 {
+            self.popupView.alpha = 0
+        } else  {
+            self.popupView.alpha = 1
+
+        }
 
 
     }
